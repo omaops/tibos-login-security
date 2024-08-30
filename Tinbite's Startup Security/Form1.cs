@@ -21,6 +21,7 @@ namespace Tinbite_s_Startup_Security
         public Form1()
         {
             InitializeComponent();
+            this.Text = "greenAV v"+ver;
             FilterInfoCollection fic;
             VideoCaptureDevice vcd;
 
@@ -34,10 +35,25 @@ namespace Tinbite_s_Startup_Security
                 vcd = new VideoCaptureDevice(fic[comboBox1.SelectedIndex].MonikerString);
                 vcd.NewFrame += FinalFrame_NewFrame;
                 vcd.Start();
-                
+
                 //sv();
             }
+            //Init the method on startup
             svAsync();
+        }
+
+        //Verions
+        string ver = "12.5.7.003";
+        //Disables the close button on form ... user has to wait 3 seconds or click ok
+        private const int CP_NOCLOSE_BUTTON = 0x200;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                return myCp;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -45,8 +61,9 @@ namespace Tinbite_s_Startup_Security
 
         }
 
-        public async Task svAsync () 
+        public async Task svAsync()
         {
+            //waits for 3 seconds, check if the path exist, if not, it will create it and then takes a screen shot via webcam, saves and exits
             await Task.Delay(TimeSpan.FromSeconds(3));
             string path = "C:/Users/Public/Music/yoo/";
             bool exists = Directory.Exists(path);
@@ -63,6 +80,7 @@ namespace Tinbite_s_Startup_Security
 
         public void closeW()
         {
+            //Force close the program
             Environment.Exit(0);
             this.Close();
             Dispose();

@@ -106,6 +106,10 @@
             Controls.Add(comboBox1);
             Controls.Add(button3);
             Controls.Add(pictureBox1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Form1";
             Text = "GreenAV";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
