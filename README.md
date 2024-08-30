@@ -1,4 +1,4 @@
-#Tibos Login Security
+# Tibos Login Security
 ## Introduction
 This is a simple application you can put into your system and add it to your start up. When ever you or ... other people login to your windows matchine, it will show up a simple window that tells the user that activation for "Green Antivirus" failed and auto closes in 3 seconds.
 In those 3 seconds, the app will activate the webcam, take a picture of the user, saves it to the path C:\Users\Public\Music\yoo with the date and time (yyyyMMdd-HHmmss.jpg) and closes as if nothing happened. 
