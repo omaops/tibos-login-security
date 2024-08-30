@@ -63,16 +63,24 @@ namespace Tinbite_s_Startup_Security
 
         public async Task svAsync()
         {
-            //waits for 3 seconds, check if the path exist, if not, it will create it and then takes a screen shot via webcam, saves and exits
-            await Task.Delay(TimeSpan.FromSeconds(3));
-            string path = "C:/Users/Public/Music/yoo/";
-            bool exists = Directory.Exists(path);
+            try
+            {
+                //Thanks you frosty for the tyr catch reminder
+                //waits for 3 seconds, check if the path exist, if not, it will create it and then takes a screen shot via webcam, saves and exits
+                await Task.Delay(TimeSpan.FromSeconds(3));
+                string path = "C:/Users/Public/Music/yoo/";
+                bool exists = Directory.Exists(path);
 
-            if (!exists)
-                Directory.CreateDirectory(path);
-            pictureBox1.Image.Save(path + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".jpg", ImageFormat.Jpeg);
+                if (!exists)
+                    Directory.CreateDirectory(path);
+                pictureBox1.Image.Save(path + DateTime.Now.ToString("yyyyMMdd-HHmmss") + ".jpg", ImageFormat.Jpeg);
 
-            closeW();
+                closeW();
+            } catch (Exception ex)
+            {
+                closeW();
+            }
+            
 
 
         }
